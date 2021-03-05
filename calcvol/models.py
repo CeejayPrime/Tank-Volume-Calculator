@@ -2,6 +2,15 @@ from django.db import models
 from django.db.models import CharField
 
 
+# class Calculate(models.Model):
+#     length = models.IntegerField()
+#     width = models.IntegerField()
+#     height = models.IntegerField()
+#     diameter = models.IntegerField()
+#     SideLength = models.IntegerField()
+#     filled = models.IntegerField()
+
+
 class HorCyl(models.Model):
     length = models.IntegerField()
     diameter = models.IntegerField()
@@ -14,7 +23,7 @@ class VerCyl(models.Model):
     filled = models.IntegerField()
 
 
-class Rect(models.Model):
+class Rects(models.Model):
     height = models.IntegerField()
     width = models.IntegerField()
     length = models.IntegerField()

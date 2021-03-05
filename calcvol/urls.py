@@ -3,14 +3,14 @@ from . import views
 
 
 urlpatterns = [
-    path("/", views.index, name="index"),
-    path('HorCyl/', views.HorCyl, name="HorCyl"),
-    path('VerCyl/', views.VerCyl, name="VerCyl"),
-    path('Rect/', views.Rect, name="Rect"),
-    path('HorOval/', views.HorOval, name="HorOval"),
-    path('VerOval/', views.VerOval, name="VerOval"),
-    path('HorCap/', views.HorCap, name="HorCap"),
-    path('VerCap/', views.VerCap, name="VerCap"),
-    path('HorEllip/', views.HorEllip, name="HorEllip"),
-    path('HorDish/', views.HorDish, name="HorDish"),
+    path('', views.index, name="index"),
+    path('HorCyl/', views.horCyl, name="HorCyl"),
+    path('VerCyl/', views.verCyl, name="VerCyl"),
+    path('Rect/', views.Rects, name="Rect"),
+    path('HorOval/', views.horOval, name="HorOval"),
+    path('VerOval/', views.verOval, name="VerOval"),
+    path('HorCap/', views.horCap, name="HorCap"),
+    path('VerCap/', views.verCap, name="VerCap"),
+    path('HorEllip/', views.horEllip, name="HorEllip"),
+    path('HorDish/', views.horDish, name="HorDish"),
 ]
