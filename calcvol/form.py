@@ -35,7 +35,7 @@ class HorOvalForm(forms.ModelForm):
 
 class HorEllipForm(forms.ModelForm):
     class Meta:
-        model = HorOval
+        model = HorEllip
         fields = '__all__'
 
 

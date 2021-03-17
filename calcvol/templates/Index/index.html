@@ -38,8 +38,9 @@
         #start {
             margin-botton: 10px;
         }
-        a {
-
+        #form {
+            margin-left: 600px;
+<!--            margin-right: 600px;-->
         }
     </style>
 </head>
@@ -68,14 +69,17 @@
                 </div>
                 <div class="col-md-10">
                     <h2>Welcome</h2><br>
-                    <p>This application looks to solve the problem of calibration and tank volume measurement. Input all the correct dimensions of your tank and get the total volume and the filled volume with high accuracy. you may no longer need a calibrated dip stick</p>
-                    <p>Start now by clicking on the button below</p>
+                    <p>This application looks to solve the problem of calibration and tank volume measurement. Input all the correct dimensions of your tank and get the total volume and the filled volume with high accuracy. You may no longer need a calibrated dip stick</p>
+                    <p>Start now by clicking on the list below</p>
                 </div>
                 <div class="col-md-1">
 
                 </div>
             </div>
         </div>
+
+    </div>
+    <div id="form">
         <form action="">
                 <select name="" id="" onchange="location = this.value;">
                     <option value="{% url 'index' %}" selected>Choose an option</option>

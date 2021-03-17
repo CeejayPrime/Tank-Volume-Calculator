@@ -27,10 +27,7 @@
             margin: 10px 10px;
         }
         .calculator {
-            margin-left: auto;
-            margin-right: auto;
-            border: 3px solid green;
-            padding: 10px;
+            margin: auto;
         }
         p {
             text-align: center;
@@ -38,9 +35,27 @@
         #start {
             margin-botton: 10px;
         }
-        a {
+        .user_card {
+			width: 350px;
+			margin-top: auto;
+			margin-bottom: auto;
+			background: blue;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
 
-        }
+		}
+
+		.tanktype{
+		    color:white;
+		    text-align:center;
+		}
     </style>
 </head>
 <body>
@@ -48,7 +63,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-
+                    <a href="{% url 'index' %}"><h3>Home</h3></a>
                 </div>
                 <div class="col-md-6">
                     <h3>Tank Volume Calculator</h3>
@@ -60,35 +75,66 @@
         </div>
     </header>
 
-    <div id="calculator">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-1">
+<div class="container h-500">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+                <div class="d-flex justify-content-center form_container">
 
-                </div>
-                <div class="col-md-10">
-                    <form action="">
-                        <select name="" id="" onchange="location = this.value;">
+                <form action="">
+                    {% csrf_token %}
+                    <div class="input-group mb-2">
+                        <select onchange="location = this.value;">
                             <option value="{% url 'index' %}">Choose an option</option>
                             <option value="{% url 'HorCap' %}">Horizontal Capsule</option>
                             <option value="{% url 'HorCyl' %}">Horizontal Cylinder</option>
                             <option value="{% url 'HorEllip' %}">Horizontal Ellipse</option>
                             <option value="{% url 'HorOval' %}">Horizontal Oval</option>
                             <option value="{% url 'HorDish' %}">Horizontal Dish Ends</option>
-                            <option value="{% url 'Rect' %}">Rectangle</option>
+                            <option value="{% url 'Rects' %}">Rectangle</option>
                             <option value="{% url 'VerCap' %}">Vertical capsule</option>
                             <option value="{% url 'VerCyl' %}">Vertical cylinder</option>
                             <option value="{% url 'VerOval' %}">Vertical Oval</option>
                         </select>
-                    </form>
-                </div>
-                <div class="col-md-1">
+                        </div>
+                </form>
 
                 </div>
-            </div>
-        </div>
+				<div class="d-flex justify-content-center form_container">
 
-    </div>
+					<form method="POST" action="">
+						{% csrf_token %}
+                        <div class="input-group mb-3">
+							<div class="input-group-append">
+								<i class="tanktype">Horizontal Tank with Dish Ends</i>
+							</div>
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Side Length</i></span>
+							</div>
+							{{form.SideLength}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Diameter</i></span>
+							</div>
+							{{form.diameter}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Filled Depth</i></span>
+							</div>
+							{{form.filled}}
+						</div>
+                        <div class="input-group mb-2">
+                            <button type="Submit" value="Submit" class="btn btn-default"><i>Calculate</i></button>
+                        </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 </body>
 </html>
