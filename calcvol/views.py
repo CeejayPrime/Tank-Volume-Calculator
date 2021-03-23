@@ -289,6 +289,10 @@ def verCyl(request):
 def verOval(request):
     calc = VerOval.objects.all()
     form = VerOvalForm()
+    tank_vol = 0.0
+    filled_vol = 0.0
+    is_tank_full = ""
+    out_put = ""
 
     if request.method == 'POST':
         form = VerOvalForm(request.POST)
@@ -296,7 +300,63 @@ def verOval(request):
         if form.is_valid():
             form.save()
 
-    context = {'form': form, 'calcs': calc}
+            try:
+                h = form.cleaned_data.get("height")
+                w = form.cleaned_data.get("width")
+                l = form.cleaned_data.get("length")
+                f = form.cleaned_data.get("filled")
+                a = h - w
+                r = w/2
+                e = r - f
+                g = r + a
+                rf = h - r
+
+                # if l > w:
+                #     Y = l - w
+                # elif w > l:
+                #     Y = w - l
+
+                tank_vol = (math.pi * r**2 + 2 * r * a) * l
+                # tank_vol = h * (math.pi * r**2 + w * Y)
+                tank_vol = math.floor(tank_vol/1000)
+
+                # Calculation for horizontal cylinder
+                tank_horvol = math.floor((math.pi * r ** 2 * l) / 1000)
+                theta = 2 * math.acos(e / r)
+                seg_area = 0.5 * r ** 2 * (theta - math.sin(theta)) * l / 1000
+                print(tank_horvol)
+                if f <= r:
+                    filled_horvol = math.floor(seg_area)
+
+                elif f > r:
+                    empty_segment = math.floor(tank_horvol - seg_area)
+                    filled_horvol = tank_horvol - empty_segment
+                # Calculation for horizontal cylinder
+
+                # Calculation for Rectangle
+                # filled_rectvol = (l * rf * a) / 1000
+                # Calculation for Rectangle
+                print(seg_area)
+                if f < r:
+                    filled_vol = filled_horvol
+
+                elif r < f < a:
+                    # filled_vol = (tank_horvol/2) + filled_rectvol
+                    filled_vol = (0.5 * math.pi * r**2 * l) + ((f - r) * l * w)
+                    print(filled_vol)
+
+                elif (h - r) < f < h:
+                    filled_vol = tank_vol - empty_segment
+                    # print(filled_vol)
+
+                filled_vol = math.floor(filled_vol/1000)
+
+            except ValueError:
+                out_put = "Invalid Input"
+
+    context = {'form': form, 'calcs': calc,
+               'tank_vol': tank_vol, 'filled_vol': filled_vol,
+               'out_put': out_put, 'is_tank_full': is_tank_full}
     return render(request, 'VerOval/VerOval.html', context)
 
 

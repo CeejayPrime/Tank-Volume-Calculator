@@ -35,6 +35,11 @@
         #start {
             margin-botton: 10px;
         }
+        h4 {
+            text-align: center;
+            color: white;
+            margin-left: 20px;
+        }
         .user_card {
 			width: 350px;
 			margin-top: auto;
@@ -110,31 +115,46 @@
 						</div>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i>Side Length</i></span>
+								<span class="input-group-text"><i>Height</i></span>
 							</div>
 							{{form.height}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i>Diameter</i></span>
+								<span class="input-group-text"><i>Width</i></span>
 							</div>
 							{{form.width}}
+						</div>
+                        <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Length</i></span>
+							</div>
+							{{form.length}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i>Filled Depth</i></span>
 							</div>
-							{{form.length}}
-						</div>
-                        <div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i>Filled Depth</i></span>
-							</div>
 							{{form.filled}}
 						</div>
+
                         <div class="input-group mb-2">
                             <button type="Submit" value="Submit" class="btn btn-default"><i>Calculate</i></button>
                         </div>
+
+                        <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Tank Volume</i></span>
+							</div>
+							<h4>{{tank_vol}} liters</h4>
+						</div>
+
+                        <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Filled Volume</i></span>
+							</div>
+							<h4>{{filled_vol}} liters</h4>
+						</div>
 					</form>
 				</div>
 			</div>
