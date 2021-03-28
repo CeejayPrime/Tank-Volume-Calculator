@@ -301,55 +301,43 @@ def verOval(request):
             form.save()
 
             try:
+
                 h = form.cleaned_data.get("height")
                 w = form.cleaned_data.get("width")
                 l = form.cleaned_data.get("length")
                 f = form.cleaned_data.get("filled")
-                a = h - w
+                f_h = h - f
                 r = w/2
+                a = h - w
                 e = r - f
+                j = r - f_h
                 g = r + a
-                rf = h - r
-
-                # if l > w:
-                #     Y = l - w
-                # elif w > l:
-                #     Y = w - l
+                i = h - r
 
                 tank_vol = (math.pi * r**2 + 2 * r * a) * l
-                # tank_vol = h * (math.pi * r**2 + w * Y)
                 tank_vol = math.floor(tank_vol/1000)
 
-                # Calculation for horizontal cylinder
-                tank_horvol = math.floor((math.pi * r ** 2 * l) / 1000)
-                theta = 2 * math.acos(e / r)
-                seg_area = 0.5 * r ** 2 * (theta - math.sin(theta)) * l / 1000
-                print(tank_horvol)
-                if f <= r:
-                    filled_horvol = math.floor(seg_area)
-
-                elif f > r:
-                    empty_segment = math.floor(tank_horvol - seg_area)
-                    filled_horvol = tank_horvol - empty_segment
-                # Calculation for horizontal cylinder
-
-                # Calculation for Rectangle
-                # filled_rectvol = (l * rf * a) / 1000
-                # Calculation for Rectangle
-                print(seg_area)
                 if f < r:
-                    filled_vol = filled_horvol
+                    theta = 2 * math.acos(e / r)
+                    seg_area = 0.5 * r ** 2 * (theta - math.sin(theta)) * l / 1000
+                    filled_vol = math.floor(seg_area)
 
-                elif r < f < a:
-                    # filled_vol = (tank_horvol/2) + filled_rectvol
+                elif r < f < g:
                     filled_vol = (0.5 * math.pi * r**2 * l) + ((f - r) * l * w)
-                    print(filled_vol)
+                    filled_vol = math.floor(filled_vol/1000)
 
-                elif (h - r) < f < h:
-                    filled_vol = tank_vol - empty_segment
-                    # print(filled_vol)
+                elif f > (r + a) < h:
+                    theta = 2 * math.acos(j / r)
+                    seg_area = 0.5 * r ** 2 * (theta - math.sin(theta)) * l / 1000
+                    filled_vol = tank_vol - seg_area
+                    filled_vol = math.floor(filled_vol)
 
-                filled_vol = math.floor(filled_vol/1000)
+                if filled_vol == tank_vol:
+                    is_tank_full = "Tank is full"
+                elif filled_vol > tank_vol:
+                    is_tank_full = "Null"
+                else:
+                    is_tank_full = ""
 
             except ValueError:
                 out_put = "Invalid Input"
