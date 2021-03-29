@@ -26,6 +26,13 @@
             color: black;
             margin: 10px 10px;
         }
+
+        h4 {
+            text-align: center;
+            color: white;
+            margin-left: 20px;
+        }
+
         .calculator {
             margin: auto;
         }
@@ -129,6 +136,24 @@
                         <div class="input-group mb-2">
                             <button type="Submit" value="Submit" class="btn btn-default"><i>Calculate</i></button>
                         </div>
+                        <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Tank Volume</i></span>
+							</div>
+							<h4>{{tank_vol}} liters</h4>
+						</div>
+                        <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Filled Volume</i></span>
+							</div>
+							<h4>{{filled_vol}} liters</h4>
+						</div>
+                        <div class="input-group mb-2">
+							<h4>{{is_tank_full}}</h4>
+						</div>
+                        <div class="input-group mb-2">
+							<h4>{{out_put}}</h4>
+						</div>
 					</form>
 				</div>
 			</div>

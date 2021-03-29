@@ -242,8 +242,54 @@ def rect(request):
 def verCap(request):
     calc = VerCap.objects.all()
     form = VerCapForm()
+    tank_vol = 0.0
+    filled_vol = 0.0
+    is_tank_full = ""
+    out_put = ""
 
-    context = {'form': form, 'calcs': calc}
+    if request.method == 'POST':
+        form = VerCapForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            try:
+                a = form.cleaned_data.get("SideLength")
+                d = form.cleaned_data.get("diameter")
+                f = form.cleaned_data.get("filled")
+                r = d/2
+                h = a + d
+                f_h = h - f
+
+                tank_vol = math.pi * r**2 * ((4/3) * r + a)
+                tank_vol = math.floor(tank_vol/1000)
+                v_sphere = ((1 / 3) * math.pi * f ** 2 * (3 * r - f))/1000
+                vs_sphere = ((1 / 3) * math.pi * f_h ** 2 * (3 * r - f_h)) / 1000
+
+                if f <= r:
+                    filled_vol = v_sphere
+                    filled_vol = math.floor(filled_vol/1000)
+
+                elif r < f <= (r + a):
+                    filled_vol = (0.667 * math.pi * r ** 3) + (math.pi * r ** 2 * (f - d/2))
+                    filled_vol = math.floor(filled_vol / 1000)
+
+                elif f > (r + a) < h:
+                    filled_vol = math.floor(tank_vol - vs_sphere)
+
+                if filled_vol == tank_vol:
+                    is_tank_full = "Tank is full"
+                elif filled_vol > tank_vol:
+                    is_tank_full = "Null"
+                else:
+                    is_tank_full = ""
+
+            except ValueError:
+                out_put = "Invalid Input"
+
+    context = {'form': form, 'calcs': calc, 'tank_vol': tank_vol,
+               'filled_vol': filled_vol, 'is_tank_full': is_tank_full,
+               'out_put': out_put}
     return render(request, 'VerCap/VerCap.html', context)
 
 
