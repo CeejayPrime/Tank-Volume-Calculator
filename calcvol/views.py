@@ -416,3 +416,11 @@ def horDish(request):
 
     context = {'form': form, 'calcs': calc}
     return render(request, 'HorDish/HorDish.html', context)
+
+
+def Ellip(request):
+    return render(request, 'Elliptical/Elliptical.html')
+
+
+def Torisphere(request):
+    return render(request, 'Torispherical/Torispherical.html')

@@ -61,3 +61,17 @@ class VerOvalForm(forms.ModelForm):
     class Meta:
         model = VerOval
         fields = '__all__'
+
+
+class EllipticalForm(forms.ModelForm):
+    class Meta:
+        model = Elliptical
+        fields = '__all__'
+
+
+class TorisphericalForm(forms.ModelForm):
+    class Meta:
+        model = Torispherical
+        fields = '__all__'
+
+
