@@ -89,16 +89,18 @@
                     {% csrf_token %}
                     <div class="input-group mb-2">
                         <select onchange="location = this.value;">
-                            <option value="{% url 'index' %}">Choose an option</option>
-                            <option value="{% url 'HorCap' %}">Horizontal Capsule</option>
-                            <option value="{% url 'HorCyl' %}">Horizontal Cylinder</option>
-                            <option value="{% url 'HorEllip' %}">Horizontal Ellipse</option>
-                            <option value="{% url 'HorOval' %}">Horizontal Oval</option>
-                            <option value="{% url 'HorDish' %}">Horizontal Dish Ends</option>
-                            <option value="{% url 'Rects' %}">Rectangle</option>
-                            <option value="{% url 'VerCap' %}">Vertical capsule</option>
-                            <option value="{% url 'VerCyl' %}">Vertical cylinder</option>
-                            <option value="{% url 'VerOval' %}">Vertical Oval</option>
+                            <option value="{% url 'index' %}" selected>Choose an option</option>
+							<option value="{% url 'HorCap' %}">Horizontal Capsule</option>
+							<option value="{% url 'HorCyl' %}">Horizontal Cylinder</option>
+							<option value="{% url 'HorEllip' %}">Horizontal Ellipse</option>
+							<option value="{% url 'HorOval' %}">Horizontal Oval</option>
+							<option value="{% url 'HorDish' %}">Horizontal Dish Ends</option>
+							<option value="{% url 'Rects' %}">Rectangle</option>
+							<option value="{% url 'VerCap' %}">Vertical capsule</option>
+							<option value="{% url 'VerCyl' %}">Vertical cylinder</option>
+							<option value="{% url 'VerOval' %}">Vertical Oval</option>
+							<option value="{% url 'Elliptical' %}">Elliptical </option>
+							<option value="{% url 'Torispherical' %}">Horizontal Torispherical Head</option>
                         </select>
                         </div>
                 </form>
@@ -110,26 +112,44 @@
 						{% csrf_token %}
                         <div class="input-group mb-3">
 							<div class="input-group-append">
-								<i class="tanktype">Vertical Oval</i>
+								<i class="tanktype">Horispherical with Torispherical Head</i>
 							</div>
-						</div>
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i>Height</i></span>
-							</div>
-							{{form.height}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i>Width</i></span>
+								<span class="input-group-text"><i>Tank Class</i></span>
 							</div>
-							{{form.width}}
+							{{form.TankClass}}
+						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Side Length</i></span>
+							</div>
+							{{form.SideLength}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Inside Diameter</i></span>
+							</div>
+							{{form.InsideDiameter}}
 						</div>
                         <div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i>Length</i></span>
+								<span class="input-group-text"><i>Outside Diameter</i></span>
 							</div>
-							{{form.length}}
+							{{form.OutsideDiameter}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Thickness</i></span>
+							</div>
+							{{form.thickness}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i>Knuckle Radius</i></span>
+							</div>
+							{{form.KnuckleRadius}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">

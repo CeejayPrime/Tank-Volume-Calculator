@@ -70,8 +70,10 @@ class VerCap(models.Model):
 
 class HorEllip(models.Model):
     SideLength = models.IntegerField()
-    diameter = models.IntegerField()
-    TankClass = models.CharField(max_length=5)
+    InsideDiameter = models.IntegerField()
+    OutsideDiameter = models.IntegerField()
+    TankClass = models.CharField(max_length=10)
+    thickness = models.IntegerField()
     filled = models.IntegerField()
 
     def __str__(self):
@@ -80,8 +82,11 @@ class HorEllip(models.Model):
 
 class Torispherical(models.Model):
     SideLength = models.IntegerField()
-    diameter = models.IntegerField()
-    TankClass = models.CharField(max_length=5)
+    InsideDiameter = models.IntegerField()
+    OutsideDiameter = models.IntegerField()
+    TankClass = models.CharField(max_length=10)
+    thickness = models.IntegerField()
+    KnuckleRadius = models.IntegerField()
     filled = models.IntegerField()
 
     def __str__(self):

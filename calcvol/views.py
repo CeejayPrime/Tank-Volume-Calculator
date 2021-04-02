@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from . models import HorCyl, HorCap, HorDish, HorOval, HorEllip
-from . models import Rects, VerCap, VerCyl, VerOval
+from . models import Rects, VerCap, VerCyl, VerOval, Torispherical, Elliptical
 from . form import VerCapForm, VerCylForm, VerOvalForm, RectsForm
-from . form import HorDishForm, HorCylForm, HorOvalForm, HorEllipForm, HorCapForm
+from . form import HorDishForm, HorCylForm, HorOvalForm, HorEllipForm
+from . form import HorCapForm, EllipticalForm, TorisphericalForm
 import math
 
 
@@ -406,21 +407,118 @@ def horDish(request):
 
         if form.is_valid():
             form.save()
-            # try:
-            #     sl = form.cleaned_data.get("SideLength")
-            #     d = form.cleaned_data.get("diameter")
-            #     f = form.cleaned_data.get("filled")
-            #     r = d/2
+            try:
+                sl = form.cleaned_data.get("SideLength")
+                d = form.cleaned_data.get("diameter")
+                f = form.cleaned_data.get("filled")
+                r = d/2
+                e = r - f
 
+                tank_vol = math.floor((math.pi * r ** 2 * sl) / 1000)
+                theta = 2 * math.acos(e / r)
+                seg_area = 1 / 2 * r ** 2 * (theta - math.sin(theta)) * sl / 1000
 
+                if f <= r:
+                    filled_vol = math.floor(seg_area)
+                    print(filled_vol)
+                elif f > r:
+                    empty_segment = math.floor(tank_vol - seg_area)
+                    filled_vol = tank_vol - empty_segment
 
-    context = {'form': form, 'calcs': calc}
+                if filled_vol == tank_vol:
+                    is_tank_full = "Tank is full"
+                elif filled_vol > tank_vol:
+                    is_tank_full = "Null"
+                else:
+                    is_tank_full = ""
+            except ValueError:
+                out_put = "Invalid Input"
+
+    context = {'form': form, 'calc': calc}
     return render(request, 'HorDish/HorDish.html', context)
 
 
 def Ellip(request):
-    return render(request, 'Elliptical/Elliptical.html')
+    calc = Elliptical.objects.all()
+    form = EllipticalForm()
+    tank_vol = 0.0
+    filled_vol = 0.0
+    is_tank_full = ""
+    out_put = ""
+
+    if request.method == 'POST':
+        form = EllipticalForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            try:
+                l = form.cleaned_data.get("length")
+                w = form.cleaned_data.get("width")
+                h = form.cleaned_data.get("height")
+                f = form.cleaned_data.get("filled")
+
+            except ValueError:
+                out_put = "Invalid Input"
+
+    context = {'form': form, 'calc': calc, 'tank_vol': tank_vol,
+               'filled_vol': filled_vol, 'is_tank_full': is_tank_full, 'out_put': out_put}
+    return render(request, 'Elliptical/Elliptical.html', context)
 
 
 def Torisphere(request):
-    return render(request, 'Torispherical/Torispherical.html')
+    calc = Torispherical.objects.all()
+    form = TorisphericalForm()
+    tank_vol = 0.0
+    filled_vol = 0.0
+    is_tank_full = ""
+    out_put = ""
+
+    if request.method == 'POST':
+        form = TorisphericalForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            try:
+                l = form.cleaned_data.get("SideLength")
+                TK = form.cleaned_data.get("TankClass")
+                t = form.cleaned_data.get("thickness")
+                f = form.cleaned_data.get("filled")
+                Do = form.cleaned_data.get("OutsideDiameter")
+                Di = form.cleaned_data.get("InsideDiameter")
+                Kr = form.cleaned_data.get("KnuckleRadius")
+                r = Di/2
+                e = r - f
+
+                if TK == 'ASME':
+                    c = 0.30939 + 1.7197 * (Kr - 0.06 * Do)/Di - 0.16116 * t/Do + 0.98997 * (t/Do)**2
+                elif TK == 'DIN 28011':
+                    c = 0.37802 + 0.05073 * t/Do + 1.3762 * (t/Do)**2
+
+                Vf = Di**3 * c * math.pi/12 * (3 * (f/Di)**2 - 2 * (f/Di)**3)
+
+                tank_vol = math.floor((math.pi * r ** 2 * l) / 1000)
+                theta = 2 * math.acos(e / r)
+                seg_area = 1 / 2 * r ** 2 * (theta - math.sin(theta)) * l / 1000
+
+                if f <= r:
+                    filled_vol = math.floor(seg_area)
+                    print(filled_vol)
+                elif f > r:
+                    empty_segment = math.floor(tank_vol - seg_area)
+                    filled_vol = tank_vol - empty_segment
+
+                if filled_vol == tank_vol:
+                    is_tank_full = "Tank is full"
+                elif filled_vol > tank_vol:
+                    is_tank_full = "Null"
+                else:
+                    is_tank_full = ""
+
+            except ValueError:
+                out_put = "Invalid Input"
+
+    context = {'form': form, 'calc': calc, 'tank_vol': tank_vol,
+               'filled_vol': filled_vol, 'is_tank_full': is_tank_full, 'out_put': out_put}
+    return render(request, 'Torispherical/Torispherical.html', context)
+
