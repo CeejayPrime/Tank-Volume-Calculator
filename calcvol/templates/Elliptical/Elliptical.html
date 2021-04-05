@@ -61,6 +61,11 @@
 		    text-align:center;
 		}
 
+		footer{
+			margin-top: 100px;
+			background: blue;
+		}
+
     </style>
 </head>
 <body>
@@ -80,7 +85,7 @@
         </div>
     </header>
 
-<div class="container h-500">
+	<div class="container h-500">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
                 <div class="d-flex justify-content-center form_container">
@@ -89,16 +94,18 @@
                     {% csrf_token %}
                     <div class="input-group mb-2">
                         <select onchange="location = this.value;">
-                            <option value="{% url 'index' %}">Choose an option</option>
-                            <option value="{% url 'HorCap' %}">Horizontal Capsule</option>
-                            <option value="{% url 'HorCyl' %}">Horizontal Cylinder</option>
-                            <option value="{% url 'HorEllip' %}">Horizontal Ellipse</option>
-                            <option value="{% url 'HorOval' %}">Horizontal Oval</option>
-                            <option value="{% url 'HorDish' %}">Horizontal Dish Ends</option>
-                            <option value="{% url 'Rects' %}">Rectangle</option>
-                            <option value="{% url 'VerCap' %}">Vertical capsule</option>
-                            <option value="{% url 'VerCyl' %}">Vertical cylinder</option>
-                            <option value="{% url 'VerOval' %}">Vertical Oval</option>
+                            <option value="{% url 'index' %}" selected>Choose an option</option>
+							<option value="{% url 'HorCap' %}">Horizontal Capsule</option>
+							<option value="{% url 'HorCyl' %}">Horizontal Cylinder</option>
+							<option value="{% url 'HorEllip' %}">Horizontal Ellipse</option>
+							<option value="{% url 'HorOval' %}">Horizontal Oval</option>
+							<option value="{% url 'HorDish' %}">Horizontal Dish Ends</option>
+							<option value="{% url 'Rects' %}">Rectangle</option>
+							<option value="{% url 'VerCap' %}">Vertical capsule</option>
+							<option value="{% url 'VerCyl' %}">Vertical cylinder</option>
+							<option value="{% url 'VerOval' %}">Vertical Oval</option>
+							<option value="{% url 'Elliptical' %}">Elliptical </option>
+							<option value="{% url 'Torispherical' %}">Horizontal Torispherical Head</option>
                         </select>
                         </div>
                 </form>
@@ -110,7 +117,7 @@
 						{% csrf_token %}
                         <div class="input-group mb-3">
 							<div class="input-group-append">
-								<i class="tanktype">Vertical Oval</i>
+								<i class="tanktype">Elliptical Tank</i>
 							</div>
 						</div>
 						<div class="input-group mb-3">
@@ -166,6 +173,21 @@
 			</div>
 		</div>
 	</div>
+	<footer>
+			<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<a href="{% url 'index' %}"><h3>Home</h3></a>
+						</div>
+						<div class="col-md-6">
+							<h3>Copyright</h3>
+						</div>
+						<div class="col-md-3">
+
+						</div>
+					</div>
+				</div>
+		</footer>
 
 
 </body>

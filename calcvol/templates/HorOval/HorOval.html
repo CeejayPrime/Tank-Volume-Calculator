@@ -62,6 +62,10 @@
 		    color:white;
 		    text-align:center;
 		}
+		footer{
+			margin-top: 100px;
+			background: blue;
+		}
 
     </style>
 </head>
@@ -91,7 +95,7 @@
                             {% csrf_token %}
                             <div class="input-group mb-2">
                                 <select onchange="location = this.value;">
-                                    <option value="{% url 'index' %}">Choose an option</option>
+                                    <option value="{% url 'index' %}" selected>Choose an option</option>
                                     <option value="{% url 'HorCap' %}">Horizontal Capsule</option>
                                     <option value="{% url 'HorCyl' %}">Horizontal Cylinder</option>
                                     <option value="{% url 'HorEllip' %}">Horizontal Ellipse</option>
@@ -101,6 +105,8 @@
                                     <option value="{% url 'VerCap' %}">Vertical capsule</option>
                                     <option value="{% url 'VerCyl' %}">Vertical cylinder</option>
                                     <option value="{% url 'VerOval' %}">Vertical Oval</option>
+                                    <option value="{% url 'Elliptical' %}">Elliptical </option>
+                                    <option value="{% url 'Torispherical' %}">Horizontal Torispherical Head</option>
                                 </select>
                             </div>
                         </form>
