@@ -13,6 +13,6 @@ urlpatterns = [
     path('VerCap/', views.verCap, name="VerCap"),
     path('HorEllip/', views.horEllip, name="HorEllip"),
     path('HorDish/', views.horDish, name="HorDish"),
-    path('Ellip/', views.Ellip, name="Elliptical"),
+    path('Ellip', views.Ellip, name="Elliptical"),
     path('Torisphere/', views.Torisphere, name="Torispherical"),
 ]

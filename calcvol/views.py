@@ -6,6 +6,10 @@ from .form import VerCapForm, VerCylForm, VerOvalForm, RectsForm
 from .form import HorDishForm, HorCylForm, HorOvalForm, HorEllipForm
 from .form import HorCapForm, EllipticalForm, TorisphericalForm
 import math
+import csv
+
+filled_depth = []
+filled_volume = []
 
 
 def index(request):
@@ -23,6 +27,8 @@ def horCap(request):
     if request.method == 'POST':
         form = HorCapForm(request.POST)
 
+        print(request.data)
+
         if form.is_valid():
             form.save()
             try:
@@ -39,7 +45,7 @@ def horCap(request):
 
                 if f <= r:
                     filled_horvol = math.floor(seg_area)
-                    # print(filled_vol)
+
                 elif f > r:
                     empty_segment = math.floor(tank_horvol - seg_area)
                     filled_horvol = tank_horvol - empty_segment
@@ -454,7 +460,7 @@ def horDish(request):
     return render(request, 'HorDish/HorDish.html', context)
 
 
-def Ellip(request):
+def Ellip(request, h):
     calc = Elliptical.objects.all()
     form = EllipticalForm()
     tank_vol = 0.0
@@ -484,7 +490,7 @@ def Ellip(request):
 
     context = {'form': form, 'calc': calc, 'tank_vol': tank_vol,
                'filled_vol': filled_vol, 'is_tank_full': is_tank_full, 'out_put': out_put}
-    return render(request, 'Elliptical/Elliptical.html', context)
+    return render(request, 'Elliptical/Elliptical.html', context, h)
 
 
 def Torisphere(request):
@@ -544,3 +550,15 @@ def Torisphere(request):
     context = {'form': form, 'calc': calc, 'tank_vol': tank_vol,
                'filled_vol': filled_vol, 'is_tank_full': is_tank_full, 'out_put': out_put}
     return render(request, 'Torispherical/Torispherical.html', context)
+
+
+def generate_csv(request):
+    response = HttpResponse('text/csv')
+    response['Content-Disposition'] = 'attachment; filename = chart.csv'
+
+    writer = csv.writer(response)
+    writer.writerow([])
+
+    return response
+
+

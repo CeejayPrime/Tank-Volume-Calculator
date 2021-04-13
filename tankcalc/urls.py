@@ -15,8 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from calcvol import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('calcvol.urls'))
+    path('', include('calcvol.urls')),
+    # path('calcvol', views.Ellip),
+    # path('calcvol', views.horCap),
+    # path('calcvol', views.horCyl),
+    # path('calcvol', views.horDish),
+    # path('calcvol', views.horEllip),
+    # path('calcvol', views.horOval),
+    # path('calcvol', views.rect),
+    # path('calcvol', views.Torisphere),
+    # path('calcvol', views.verCap),
+    # path('calcvol', views.verCyl),
+    # path('calcvol', views.verOval),
 ]
