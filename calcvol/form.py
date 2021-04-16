@@ -5,61 +5,61 @@ from .models import *
 
 class HorCapForm(forms.ModelForm):
     class Meta:
-        model = HorCap
+        model = HorizontalCapsule
         fields = '__all__'
 
-
-class HorCapForm(forms.ModelForm):
-    class Meta:
-        model = HorCap
-        fields = '__all__'
+#
+# class HorCapForm(forms.ModelForm):
+#     class Meta:
+#         model = HorCap
+#         fields = '__all__'
 
 
 class HorCylForm(forms.ModelForm):
     class Meta:
-        model = HorCyl
+        model = HorizontalCylinder
         fields = '__all__'
 
 
 class HorDishForm(forms.ModelForm):
     class Meta:
-        model = HorDish
+        model = HorizontalDishedEnd
         fields = '__all__'
 
 
 class HorOvalForm(forms.ModelForm):
     class Meta:
-        model = HorOval
+        model = HorizontalOval
         fields = '__all__'
 
 
 class HorEllipForm(forms.ModelForm):
     class Meta:
-        model = HorEllip
+        model = HorizontalElliptical
         fields = '__all__'
 
 
 class RectsForm(forms.ModelForm):
     class Meta:
-        model = Rects
+        model = RectangularTank
         fields = '__all__'
 
 
 class VerCapForm(forms.ModelForm):
     class Meta:
-        model = VerCap
+        model = VerticalCapsule
         fields = '__all__'
 
 
 class VerCylForm(forms.ModelForm):
     class Meta:
-        model = VerCyl
+        model = VerticalCylinder
         fields = '__all__'
 
 
 class VerOvalForm(forms.ModelForm):
     class Meta:
-        model = VerOval
+        model = VerticalOval
         fields = '__all__'
 
 

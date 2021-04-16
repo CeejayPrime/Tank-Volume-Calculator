@@ -2,82 +2,58 @@ from django.db import models
 from django.db.models import CharField
 
 
-class HorCyl(models.Model):
+class HorizontalCylinder(models.Model):
     length = models.IntegerField()
     diameter = models.IntegerField()
     filled = models.IntegerField()
 
-    def __str__(self):
-        return self.filled
 
-
-class VerCyl(models.Model):
+class VerticalCylinder(models.Model):
     height = models.IntegerField()
     diameter = models.IntegerField()
     filled = models.IntegerField()
 
-    def __str__(self):
-        return self.filled
 
-
-class Rects(models.Model):
+class RectangularTank(models.Model):
     height = models.IntegerField()
     width = models.IntegerField()
     length = models.IntegerField()
     filled = models.IntegerField()
 
-    def __str__(self):
-        return self.filled
 
-
-class HorOval(models.Model):
+class HorizontalOval(models.Model):
     height = models.IntegerField()
     width = models.IntegerField()
     length = models.IntegerField()
     filled = models.IntegerField()
 
-    def __str__(self):
-        return self.filled
 
-
-class VerOval(models.Model):
+class VerticalOval(models.Model):
     height = models.IntegerField()
     width = models.IntegerField()
     length = models.IntegerField()
     filled = models.IntegerField()
 
-    def __str__(self):
-        return self.filled
 
-
-class HorCap(models.Model):
+class HorizontalCapsule(models.Model):
     SideLength = models.IntegerField()
     diameter = models.IntegerField()
     filled = models.IntegerField()
 
-    def __str__(self):
-        return self.filled
 
-
-class VerCap(models.Model):
+class VerticalCapsule(models.Model):
     SideLength = models.IntegerField()
     diameter = models.IntegerField()
     filled = models.IntegerField()
 
-    def __str__(self):
-        return self.filled
 
-
-class HorEllip(models.Model):
+class HorizontalElliptical(models.Model):
     SideLength = models.IntegerField()
     InsideDiameter = models.IntegerField()
     OutsideDiameter = models.IntegerField()
     TankClass = models.CharField(max_length=10)
     thickness = models.IntegerField()
     filled = models.IntegerField()
-
-    def __str__(self):
-        return self.filled
 
 
 class Torispherical(models.Model):
@@ -89,17 +65,11 @@ class Torispherical(models.Model):
     KnuckleRadius = models.IntegerField()
     filled = models.IntegerField()
 
-    def __str__(self):
-        return self.filled
 
-
-class HorDish(models.Model):
+class HorizontalDishedEnd(models.Model):
     SideLength = models.IntegerField()
     diameter = models.IntegerField()
     filled = models.IntegerField()
-
-    def __str__(self):
-        return self.filled
 
 
 class Elliptical(models.Model):
@@ -107,6 +77,3 @@ class Elliptical(models.Model):
     width = models.IntegerField()
     height = models.IntegerField()
     filled = models.IntegerField()
-
-    def __str__(self):
-        return self.filled

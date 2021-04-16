@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from calcvol import views
+from gcsv import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('calcvol.urls')),
-    # path('calcvol', views.Ellip),
+    path('gcsv>', views.horizontalCapsuleCsv, name="Gen_Hor_Cap_Csv"),
     # path('calcvol', views.horCap),
     # path('calcvol', views.horCyl),
     # path('calcvol', views.horDish),

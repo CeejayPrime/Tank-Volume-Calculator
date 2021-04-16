@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import HorCyl, HorCap, HorDish, HorOval, HorEllip
-from .models import Rects, VerCap, VerCyl, VerOval, Torispherical, Elliptical
+from .models import HorizontalCylinder, HorizontalCapsule, HorizontalDishedEnd, HorizontalOval, HorizontalElliptical
+from .models import RectangularTank, VerticalCapsule, VerticalCylinder, VerticalOval, Torispherical, Elliptical
 from .form import VerCapForm, VerCylForm, VerOvalForm, RectsForm
 from .form import HorDishForm, HorCylForm, HorOvalForm, HorEllipForm
 from .form import HorCapForm, EllipticalForm, TorisphericalForm
@@ -16,8 +16,8 @@ def index(request):
     return render(request, 'Index/index.html')
 
 
-def horCap(request):
-    calcs = HorCap.objects.all()
+def horizontalCapsule(request):
+    calcs = HorizontalCapsule.objects.all()
     form = HorCapForm()
     tank_vol = 0.0
     filled_vol = 0.0
@@ -26,8 +26,6 @@ def horCap(request):
 
     if request.method == 'POST':
         form = HorCapForm(request.POST)
-
-        print(request.data)
 
         if form.is_valid():
             form.save()
@@ -75,8 +73,8 @@ def horCap(request):
     return render(request, 'HorCap/HorCap.html', context)
 
 
-def horCyl(request):
-    calcs = HorCyl.objects.all()
+def horizontalCylinder(request):
+    calcs = HorizontalCylinder.objects.all()
     form = HorCylForm()
     tank_vol = 0.0
     filled_vol = 0.0
@@ -119,8 +117,8 @@ def horCyl(request):
     return render(request, 'HorCyl/HorCyl.html', context)
 
 
-def horEllip(request):
-    calc = HorEllip.objects.all()
+def horizontalElliptical(request):
+    calc = HorizontalElliptical.objects.all()
     form = HorEllipForm()
     tank_vol = 0.0
     filled_vol = 0.0
@@ -173,8 +171,8 @@ def horEllip(request):
     return render(request, 'HorEllip/HorEllip.html', context)
 
 
-def horOval(request):
-    calcs = HorOval.objects.all()
+def horizontalOval(request):
+    calcs = HorizontalOval.objects.all()
     form = HorOvalForm()
     tank_vol = 0.0
     filled_vol = 0.0
@@ -231,8 +229,8 @@ def horOval(request):
     return render(request, 'HorOval/HorOval.html', context)
 
 
-def rect(request):
-    calc = Rects.objects.all()
+def rectangularTank(request):
+    calc = RectangularTank.objects.all()
     form = RectsForm()
     tank_vol = 0.0
     filled_vol = 0.0
@@ -270,8 +268,8 @@ def rect(request):
     return render(request, 'Rect/Rect.html', context)
 
 
-def verCap(request):
-    calc = VerCap.objects.all()
+def verticalCapsule(request):
+    calc = VerticalCapsule.objects.all()
     form = VerCapForm()
     tank_vol = 0.0
     filled_vol = 0.0
@@ -320,8 +318,8 @@ def verCap(request):
     return render(request, 'VerCap/VerCap.html', context)
 
 
-def verCyl(request):
-    calc = VerCyl.objects.all()
+def verticalCylinder(request):
+    calc = VerticalCylinder.objects.all()
     form = VerCylForm()
     # the formula is pi * r^2 * h
     tank_volume = 0.0
@@ -359,8 +357,8 @@ def verCyl(request):
     return render(request, 'VerCyl/VerCyl.html', context)
 
 
-def verOval(request):
-    calc = VerOval.objects.all()
+def verticalOval(request):
+    calc = VerticalOval.objects.all()
     form = VerOvalForm()
     tank_vol = 0.0
     filled_vol = 0.0
@@ -417,8 +415,8 @@ def verOval(request):
     return render(request, 'VerOval/VerOval.html', context)
 
 
-def horDish(request):
-    calc = HorDish.objects.all()
+def horizontalDishedEnd(request):
+    calc = HorizontalDishedEnd.objects.all()
     form = HorDishForm()
     tank_vol = 0.0
     filled_vol = 0.0
@@ -460,7 +458,7 @@ def horDish(request):
     return render(request, 'HorDish/HorDish.html', context)
 
 
-def Ellip(request, h):
+def elliptical(request):
     calc = Elliptical.objects.all()
     form = EllipticalForm()
     tank_vol = 0.0
@@ -493,7 +491,7 @@ def Ellip(request, h):
     return render(request, 'Elliptical/Elliptical.html', context, h)
 
 
-def Torisphere(request):
+def torisphere(request):
     calc = Torispherical.objects.all()
     form = TorisphericalForm()
     tank_vol = 0.0
