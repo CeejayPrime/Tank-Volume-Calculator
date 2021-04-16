@@ -20,7 +20,7 @@ from gcsv import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('calcvol.urls')),
-    path('gcsv', views.horizontalCapsuleCsv, name="Gen_Hor_Cap_Csv"),
+    path('gcsv/<int:pk>/', views.horizontalCapsuleCsv, name="Gen_Hor_Cap_Csv"),
     # path('calcvol', views.horCap),
     # path('calcvol', views.horCyl),
     # path('calcvol', views.horDish),
