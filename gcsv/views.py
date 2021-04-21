@@ -2,11 +2,11 @@ from django.shortcuts import render
 from calcvol.views import *
 from calcvol.form import *
 from calcvol.models import *
+from django.shortcuts import get_object_or_404
 
 
 def horizontalCapsuleCsv(request, pk):
-    g_csv = HorizontalCapsule.objects.get(id=pk)
-    # form = HorCapForm(instance=g_csv)
+    g_csv = get_object_or_404(HorizontalCapsule(request), id=pk)
     d = g_csv.diameter
     l = g_csv.SideLength
     r = d/2
@@ -37,5 +37,9 @@ def horizontalCapsuleCsv(request, pk):
     writer.writerow(fill_d)
     writer.writerow(vol)
 
+    context = {
+        'g_csv': g_csv,
+    }
+    return render(request, 'HorCap/HorCap.html', context)
     return response
 

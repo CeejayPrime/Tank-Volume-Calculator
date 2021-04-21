@@ -550,13 +550,3 @@ def torisphere(request):
     return render(request, 'Torispherical/Torispherical.html', context)
 
 
-def generate_csv(request):
-    response = HttpResponse('text/csv')
-    response['Content-Disposition'] = 'attachment; filename = chart.csv'
-
-    writer = csv.writer(response)
-    writer.writerow([])
-
-    return response
-
-

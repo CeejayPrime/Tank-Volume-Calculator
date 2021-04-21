@@ -170,9 +170,7 @@
 		</div>
 	</div>
 	<div id="genchart" class="d-flex justify-content-center form_container">
-		{% for info in g_csv %}
-		<a class="btn btn-outline-primary" href="{% url 'Gen_Hor_Cap_Csv' info.id %}" role="button"><b><i>Generate Chart</i></b></a>
-		{% endfor %}
+		<a class="btn btn-outline-primary" href="{% url 'GenH' g_csv.id %}" role="button"><b><i>Generate Chart</i></b></a>
 	</div>
 	<footer>
 			<div class="container">
